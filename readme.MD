@@ -14,11 +14,11 @@ with what ever is the latest version.
 `docker run --name cuke-runner -v ~/workspace/docker/simple-test/:/cuke-test -d -p 4444:4444 -p 5900:5900 selenium-ruby-chrome`
 
 ### What are the options for?
-`--name cuke-runner` - run this container with the name "cuke-runner"
-`-v ~/workspace/docker/simple-test/:/cuke-test` - mounts the local directory to the `/cuke-test` directory in the container
-`-d` - run in detached mode
-`-p 4444:4444` - expose port 4444 which is where the selenium server is listening on
-`-p 5900:5900` - expose port 5900 which is where the vnc server is listening on
+* `--name cuke-runner` - run this container with the name "cuke-runner"
+* `-v ~/workspace/docker/simple-test/:/cuke-test` - mounts the local directory to the `/cuke-test` directory in the container
+* `-d` - run in detached mode
+* `-p 4444:4444` - expose port 4444 which is where the selenium server is listening on
+* `-p 5900:5900` - expose port 5900 which is where the vnc server is listening on
 
 ### VNC password = secret
 
