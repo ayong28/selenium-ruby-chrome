@@ -11,7 +11,7 @@ in the Dockerfile
 with what ever is the latest version.
 
 ## Run the container
-`docker run --name cuke-runner -v /dev/shm:/dev/shm -v ~/workspace/docker/simple-test/:/cuke-test -d -p 4444:4444 -p 5900:5900 selenium-ruby-chrome`
+`docker run --name cuke-runner -v /dev/shm:/dev/shm -v ~/workspace/docker/simple-test/:/cuke-test -d -p 4444:4444 -p 5900:5900 happycamper28/selenium-ruby-chrome`
 
 #### Explanation of `docker run` options: 
 * `--name cuke-runner` - run this container with the name "cuke-runner"
