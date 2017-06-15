@@ -11,7 +11,7 @@ in the Dockerfile
 with what ever is the latest version.
 
 ## Run container
-`docker run --name cuke-runner -v ~/workspace/docker/simple-test/:/cuke-test -d -p 4444:4444 -p 5900:5900 selenium-ruby-chrome`
+`docker run --name cuke-runner -v /dev/shm:/dev/shm -v ~/workspace/docker/simple-test/:/cuke-test -d -p 4444:4444 -p 5900:5900 selenium-ruby-chrome`
 
 ### What are the options for?
 * `--name cuke-runner` - run this container with the name "cuke-runner"
@@ -19,6 +19,8 @@ with what ever is the latest version.
 * `-d` - run in detached mode
 * `-p 4444:4444` - expose port 4444 which is where the selenium server is listening on
 * `-p 5900:5900` - expose port 5900 which is where the vnc server is listening on
+* `-v /dev/shm:/dev/shm` - mount the host shared memory to the container to avoid chrome crashing
+
 
 ### VNC password = secret
 
@@ -28,3 +30,9 @@ Configure the selenium driver to use the chromedriver located within the contain
 
 ## Execute a test from outside the container
 Configure your selenium driver config to point to the selenium server 
+
+## References
+* https://linuxmeerkat.wordpress.com/2014/10/17/running-a-gui-application-in-a-docker-container/
+* SeleniumHQ - https://github.com/SeleniumHQ/docker-selenium 
+* Alternative to seleniumhq docker image - https://github.com/elgalu/docker-selenium 
+* 
