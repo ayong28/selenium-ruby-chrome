@@ -10,6 +10,8 @@ in the Dockerfile
 `FROM selenium/standalone-chrome-debug:3.4.0-actinium` 
 with what ever is the latest version.
 
+
+
 ## Run the container
 `docker run --name cuke-runner -v /dev/shm:/dev/shm -v ~/workspace/docker/simple-test/:/cuke-test -d -p 4444:4444 -p 5900:5900 happycamper28/selenium-ruby-chrome`
 
@@ -21,36 +23,52 @@ with what ever is the latest version.
 * `-p 5900:5900` - expose port 5900 which is where the vnc server is listening on
 * `-v /dev/shm:/dev/shm` - mount the host shared memory to the container to avoid chrome crashing
 
+
+
 ## View the tests running in the container via VNC 
 
-To view the running tests, connect to the container via VNC on `localhost:5900`
+#### For Mac users:
+1. Use spotlight (cmd + space)
+2. Type "screen sharing"
+3. Press "Enter"
+4. enter "localhost:5900"
+5. enter password = "secret"
 
-** NOTE: ** VNC password = secret 
+#### For Windows users:
+1. Download any VNC client for Windows (e.g. https://www.realvnc.com/download/vnc/windows/)
 
-For Mac users:
-* Use spotlight (cmd + space)
-* Type "screen sharing"
-* Press "Enter"
-* enter "localhost:5900"
-* enter password = "secret"
-
-For Windows users:
-* Download any VNC client for Windows (e.g. https://www.realvnc.com/download/vnc/windows/)
+> ** Remember ** VNC password = secret 
 
 ## Execute a test inside the container 
-Configure the selenium driver to use chromedriver located at `/usr/bin/chromedriver` inside the container.
 
-Selenium webdriver config 
-```ruby
-Capybara.register_driver :selenium do |app|
-  @chromedriver_path = '/usr/bin/chromedriver'
-  Selenium::WebDriver::Chrome::driver_path = @chromedriver_path
-  Capybara::Selenium::Driver.new(app, :browser => :chrome, :switches => %w[--disable-popup-blocking, --disable-extensions])
-end
-```
+
+1. Configure the selenium driver to use chromedriver located at `/usr/bin/chromedriver` inside the container.
+
+  Selenium webdriver config 
+  ```ruby
+  Capybara.register_driver :selenium do |app|
+    @chromedriver_path = '/usr/bin/chromedriver'
+    Selenium::WebDriver::Chrome::driver_path = @chromedriver_path
+    Capybara::Selenium::Driver.new(app, :browser => :chrome, :switches => %w[--disable-popup-blocking, --disable-extensions])
+  end
+  ```
+2. Make sure you already have mounted your test directory to the docker container, in our example above we have `~/workspace/docker/simple-test/` already mounted 
+
+3. Do the following to execute the tests inside the container
+   
+   ```
+   $ docker exec -it cuke-runner bash
+   $ cd cuke-test 
+   $ cd cucumber 
+   $ cucumber
+   ```
+4. (Optional step) - View the running tests in the container using VNC (see above)
 
 
 ## Execute a test from outside the container
+
+> NOTE: This option is only for users who have Ruby and all the relevant Gems installed on their local machine
+
 Selenium webdriver config:
 
 ```ruby
@@ -64,6 +82,7 @@ end
 Capybara.default_driver = :selenium_grid_remote_browser
 
 ```
+
 
 ## References
 * How to run a gui app in Docker - https://linuxmeerkat.wordpress.com/2014/10/17/running-a-gui-application-in-a-docker-container/
