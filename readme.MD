@@ -34,6 +34,9 @@ For Mac users:
 * enter "localhost:5900"
 * enter password = "secret"
 
+For Windows users:
+* Download any VNC client for Windows (e.g. https://www.realvnc.com/download/vnc/windows/)
+
 ## Execute a test inside the container 
 Configure the selenium driver to use chromedriver located at `/usr/bin/chromedriver` inside the container.
 
