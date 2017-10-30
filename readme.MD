@@ -22,7 +22,7 @@ with what ever is the latest version.
 docker run --name cuke-runner -v /dev/shm:/dev/shm -v $PWD/:/cuke-test \
   -d -p 4444:4444 \
   -p 5900:5900 \
-  -i [your-dockerhub-id]/selenium-ruby-container
+  -i happycamper28/selenium-ruby-chrome
 ```
 
 ### Stopping the container
@@ -105,12 +105,12 @@ Capybara.default_driver = :selenium_grid_remote_browser
 
 1. Re-build the docker image
 ```
-$ cd selenium-ruby-container
-$ docker build -t selenium-ruby-container .
+$ cd selenium-ruby-chrome
+$ docker build -t selenium-ruby-chrome .
 ```
 2. Push the image to docker hub (you need to log in to docker hub first)
 ```
-$ docker push [your-docker-hub-id]/selenium-ruby-container
+$ docker push [your-docker-hub-id]/selenium-ruby-chrome
 ```
 
 ## References
