@@ -10,20 +10,26 @@ in the Dockerfile
 `FROM selenium/standalone-chrome-debug:3.4.0-actinium` 
 with what ever is the latest version.
 
+## Running the container
 
+### Run the container
+```
+docker run --name cuke-runner -v /dev/shm:/dev/shm -v $PWD/:/cuke-test \
+  -d -p 4444:4444 \
+  -p 5900:5900 \
+  -i [your-dockerhub-id]/selenium-ruby-container
+```
 
-## Run the container
-`docker run --name cuke-runner -v /dev/shm:/dev/shm -v ~/workspace/docker/simple-test/:/cuke-test -d -p 4444:4444 -p 5900:5900 happycamper28/selenium-ruby-chrome`
+### Stopping the container
+`docker rm -f cuke-runner`
 
 #### Explanation of `docker run` options: 
 * `--name cuke-runner` - run this container with the name "cuke-runner"
-* `-v ~/workspace/docker/simple-test/:/cuke-test` - mounts the local directory to the `/cuke-test` directory in the container
+* `-v $PWD/:/cuke-test` - mounts the current working directory to the `/cuke-test` directory in the container
 * `-d` - run in detached mode
 * `-p 4444:4444` - expose port 4444 which is where the selenium server is listening on
 * `-p 5900:5900` - expose port 5900 which is where the vnc server is listening on
 * `-v /dev/shm:/dev/shm` - mount the host shared memory to the container to avoid chrome crashing
-
-
 
 ## View the tests running in the container via VNC 
 
@@ -37,7 +43,7 @@ with what ever is the latest version.
 #### For Windows users:
 1. Download any VNC client for Windows (e.g. https://www.realvnc.com/download/vnc/windows/)
 
-> ** Remember ** VNC password = secret 
+> ** Note: ** VNC password = secret 
 
 ## Execute a test inside the container 
 
@@ -83,9 +89,19 @@ Capybara.default_driver = :selenium_grid_remote_browser
 
 ```
 
+## If you need to rebuild the image after making changes to the Dockerfile, do this
+
+1. Re-build the docker image
+```
+$ cd selenium-ruby-container
+$ docker build -t selenium-ruby-container .
+```
+2. Push the image to docker hub (you need to log in to docker hub first)
+```
+$ docker push [your-docker-hub-id]/selenium-ruby-container
+```
 
 ## References
 * How to run a gui app in Docker - https://linuxmeerkat.wordpress.com/2014/10/17/running-a-gui-application-in-a-docker-container/
 * SeleniumHQ - https://github.com/SeleniumHQ/docker-selenium 
 * Alternative to seleniumhq docker image - https://github.com/elgalu/docker-selenium 
-* 
