@@ -13,6 +13,11 @@ with what ever is the latest version.
 ## Running the container
 
 ### Run the container
+
+1. Make sure that your Cuke tests are located in the same directory where you are running the `docker run` command
+
+2. Run the following:
+
 ```
 docker run --name cuke-runner -v /dev/shm:/dev/shm -v $PWD/:/cuke-test \
   -d -p 4444:4444 \
@@ -34,6 +39,13 @@ docker run --name cuke-runner -v /dev/shm:/dev/shm -v $PWD/:/cuke-test \
 ## View the tests running in the container via VNC 
 
 #### For Mac users:
+In the terminal:
+```
+$ open vnc://:secret@localhost:5900
+```
+
+**OR**
+
 1. Use spotlight (cmd + space)
 2. Type "screen sharing"
 3. Press "Enter"
