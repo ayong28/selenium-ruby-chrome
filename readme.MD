@@ -82,11 +82,12 @@ $ open vnc://:secret@localhost:5900
    ```
 4. (Optional step) - View the running tests in the container using VNC (see above)
 
-## Use shell script to run the container and tests and stop the container
+## Use this shell script to run the container, then run the Cuke tests and then stop the container.
 
 1. In the terminal:
 
 ```
+$ cd selenium-ruby-chrome
 $ ./run_test_in_docker.sh
 ```
 
