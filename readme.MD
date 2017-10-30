@@ -70,7 +70,7 @@ $ open vnc://:secret@localhost:5900
     Capybara::Selenium::Driver.new(app, :browser => :chrome, :switches => %w[--disable-popup-blocking, --disable-extensions])
   end
   ```
-2. Make sure you already have mounted your test directory to the docker container, in our example above we have `~/workspace/docker/simple-test/` already mounted 
+2. Make sure you already have mounted your test directory to the docker container, in our example above we have the current working directory already mounted. 
 
 3. Do the following to execute the tests inside the container
    
@@ -82,6 +82,13 @@ $ open vnc://:secret@localhost:5900
    ```
 4. (Optional step) - View the running tests in the container using VNC (see above)
 
+## Use shell script to run the container and tests and stop the container
+
+1. In the terminal:
+
+```
+$ ./run_test_in_docker.sh
+```
 
 ## Execute a test from outside the container
 
