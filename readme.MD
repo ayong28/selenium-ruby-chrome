@@ -117,3 +117,4 @@ $ docker push [your-docker-hub-id]/selenium-ruby-chrome
 * How to run a gui app in Docker - https://linuxmeerkat.wordpress.com/2014/10/17/running-a-gui-application-in-a-docker-container/
 * SeleniumHQ - https://github.com/SeleniumHQ/docker-selenium 
 * Alternative to seleniumhq docker image - https://github.com/elgalu/docker-selenium 
+* Known issues when running tests (Net::ReadTimeout during browser launch) - https://github.com/SeleniumHQ/docker-selenium/issues/198
